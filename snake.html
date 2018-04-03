@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+				overflow-y: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var my_canvas = document.createElement('canvas');
+			my_canvas.width = 800;
+			my_canvas.height = 800;
+
+			document.body.appendChild(my_canvas);
+			document.addEventListener('keydown', onkey);
+
+			var ctx = my_canvas.getContext('2d');
+
+			var d = 10, el = 5, x = my_canvas.width / 2, y = my_canvas.height / 2, modX = 0, modY = 0;
+			var fps = 60, lastTime = 0;
+
+	
+
+			// ctx.beginPath();
+			// ctx.fillStyle = 'black';
+			// ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
+
+			// draw();
+var yes = false;
+
+				function onkey(event){
+					// switch(event.keyDown){
+					// 	case 37: modX = -1; modY = 0; break;
+					// 	case 38: modX = 0; modY = 1; break;
+					// 	case 39: modX = 1; modY = 0; break;
+					// 	case 40: modX = 0; modY = -1; break;
+					// }
+					if(yes == true){
+						yes = false;
+					}else{
+						yes = true;
+					}
+					console.log(yes);
+				}
+			
+			draw();
+			
+			function draw(time){
+					requestAnimationFrame(draw);
+					if(time - lastTime >= 1000/fps){
+						lastTime = time;
+						ctx.clearRect(0, 0, my_canvas.width, my_canvas.height);
+
+						if(yes){
+							modX = -1;
+						}
+
+						x += modX;
+						y += modY;
+
+						ctx.beginPath();
+						ctx.fillStyle = 'black';
+						ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
+
+						ctx.fillStyle = 'white';
+						ctx.fillRect(x, y, d, d);
+					}		
+			}
+
+		</script>
+	</body>
+</html>
