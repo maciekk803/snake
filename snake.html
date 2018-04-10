@@ -21,55 +21,51 @@
 
 			var ctx = my_canvas.getContext('2d');
 
-			var d = 10, el = 5, x = my_canvas.width / 2, y = my_canvas.height / 2, modX = 0, modY = 0;
-			var fps = 60, lastTime = 0;
+			// var d = 10, el = 5, x = my_canvas.width / 2, y = my_canvas.height / 2, modX = 0, modY = 0;
+			// var fps = 60, lastTime = 0;
+			var lastTime = 0, fps = 60;
 
-	
+			var gs = tc = 40;
+			var px = py = 20;
+			var ax = ay = 10;
+			var modX = modY = 0;
+			var tail = 5;
+			var path = [];
 
-			// ctx.beginPath();
-			// ctx.fillStyle = 'black';
-			// ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
 
-			// draw();
-var yes = false;
 
-				function onkey(event){
-					// switch(event.keyDown){
-					// 	case 37: modX = -1; modY = 0; break;
-					// 	case 38: modX = 0; modY = 1; break;
-					// 	case 39: modX = 1; modY = 0; break;
-					// 	case 40: modX = 0; modY = -1; break;
-					// }
-					if(yes == true){
-						yes = false;
-					}else{
-						yes = true;
-					}
-					console.log(yes);
+			function onkey(event){
+				switch(event.keyDown){
+					case 37: modX = -1; modY = 0; break;
+					case 38: modX = 0; modY = 1; break;
+					case 39: modX = 1; modY = 0; break;
+					case 40: modX = 0; modY = -1; break;
 				}
+			}
 			
 			draw();
-			
+
 			function draw(time){
-					requestAnimationFrame(draw);
-					if(time - lastTime >= 1000/fps){
-						lastTime = time;
-						ctx.clearRect(0, 0, my_canvas.width, my_canvas.height);
+				requestAnimationFrame(draw);
+				if(time - lastTime >= 1000/fps){
+					lastTime = time;
 
-						if(yes){
-							modX = -1;
-						}
+					ctx.clearRect(0, 0, my_canvas.width, my_canvas.height);
 
-						x += modX;
-						y += modY;
+					snake();
+				}		
+			}
 
-						ctx.beginPath();
-						ctx.fillStyle = 'black';
-						ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
+			function snake(){
+				px += modX;
+				py += modY;
 
-						ctx.fillStyle = 'white';
-						ctx.fillRect(x, y, d, d);
-					}		
+				ctx.beginPath();
+				ctx.fillStyle = 'black';
+				ctx.fillRect(0, 0, my_canvas.width, my_canvas.height);
+
+				ctx.fillStyle = 'white';
+				ctx.fillRect(px, py, d, d);
 			}
 
 		</script>
